@@ -1,30 +1,57 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
 
-  /* Tipografía */
-  --font-serif: 'Roboto Slab', 'Arvo', ui-serif, Georgia, Cambria, serif;
-  --font-sans: 'Roboto', 'Open Sans', ui-sans-serif, system-ui, sans-serif;
+  /* Tipografía */   
+  --font-sans: var(--font-primary), 'Roboto', 'Open Sans', ui-sans-serif, system-ui, sans-serif;   
+  --font-serif: var(--font-display), 'Roboto Slab', 'Arvo', ui-serif, Georgia, Cambria, serif;   
   --font-script: 'Sacramento', 'Dancing Script', 'Yellowtail', cursive;
 
   /* Identidad Casa Once */
   --color-olive: #5e6943;
+  --color-olive-light: #7c8a5a;
+  --color-olive-dark: #4a5636;
+  --color-cream: #faf6ef;
+  --color-cream-dark: #f3ecdf;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #ffffff;
+  --foreground: #1f1e1a;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Compensar el header sticky — los anchors no quedan ocultos detrás del menú */
+[id] {
+  scroll-margin-top: 6rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* WhatsApp flotante respeta safe-area en móviles */
+@supports (padding: max(0px)) {
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { Container } from "./ui/container";
 import { Menu, X } from "lucide-react";
+import { siteConfig } from "@/app/data/site";
 
 interface NavigationItem {
     label: string;
@@ -52,18 +55,21 @@ export function Header() {
             <Container>
                 <div className="flex min-h-24 items-center justify-between gap-5">
                     {/* Logo */}
-                    <a
+                    <Link
                         href="/#inicio"
                         aria-label="Casa Once, ir al inicio"
                         onClick={closeMenu}
                         className="shrink-0 transition duration-300 hover:opacity-90"
                     >
-                        <img
+                        <Image
                             src="/images/logo/logo.jpg"
                             alt="Casa Once"
+                            width={428}
+                            height={293}
+                            priority
                             className="h-14 w-auto object-contain transition duration-300 lg:h-16"
                         />
-                    </a>
+                    </Link>
 
                     {/* Navegación desktop */}
                     <nav
@@ -71,17 +77,27 @@ export function Header() {
                         aria-label="Navegación principal"
                     >
                         {navigation.map((item) => (
-                            <a
+                            <Link
                                 key={item.href}
                                 href={item.href}
-                                className="group relative py-5 font-script font-semibold text-white transition-colors duration-300 hover:text-white"
+                                className="group relative py-5 font-serif font-semibold text-white transition-colors duration-300 hover:text-white"
                             >
                                 {item.label}
 
                                 <span className="absolute bottom-0 left-0 h-[3px] w-0 bg-white transition-all duration-300 group-hover:w-full" />
-                            </a>
+                            </Link>
                         ))}
                     </nav>
+
+                    {/* CTA desktop */}
+                    <a
+                        href={siteConfig.menuUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hidden items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold uppercase tracking-wide text-olive transition-colors duration-300 hover:bg-cream-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white xl:inline-flex"
+                    >
+                        Ver carta
+                    </a>
 
                     {/* Botón menú móvil */}
                     <button
@@ -114,19 +130,29 @@ export function Header() {
                 ].join(" ")}
             >
                 <Container className="flex h-full flex-col py-7">
+                    <a
+                        href={siteConfig.menuUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={closeMenu}
+                        className="inline-flex items-center justify-center rounded-full bg-olive px-6 py-3.5 text-base font-bold uppercase tracking-wide text-white transition-colors duration-200 hover:bg-olive-dark"
+                    >
+                        Ver carta
+                    </a>
+
                     <nav
-                        className="flex flex-col"
+                        className="mt-4 flex flex-col"
                         aria-label="Navegación móvil"
                     >
                         {navigation.map((item) => (
-                            <a
+                            <Link
                                 key={item.href}
                                 href={item.href}
                                 className="border-b border-black/10 py-5 text-lg font-bold text-black transition-colors duration-200 hover:text-olive"
                                 onClick={closeMenu}
                             >
                                 {item.label}
-                            </a>
+                            </Link>
                         ))}
                     </nav>
                 </Container>
