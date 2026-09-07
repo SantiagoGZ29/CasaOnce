@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { ProductCategory } from "@/app/data/products";
 import { siteConfig } from "@/app/data/site";
+import { Reveal } from "@/app/components/common/reveal";
 
 export function ProductCard({ category }: { category: ProductCategory }) {
   return (
@@ -9,10 +10,13 @@ export function ProductCard({ category }: { category: ProductCategory }) {
       href={category.href ?? siteConfig.menuUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col overflow-hidden rounded-3xl border border-black/10 bg-white transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-black/10 bg-white transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
       aria-label={`Ver ${category.title} en la carta`}
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden">
+      <Reveal
+        variant="img"
+        className="relative aspect-[4/3] w-full overflow-hidden"
+      >
         <Image
           src={category.image}
           alt={category.title}
@@ -20,7 +24,7 @@ export function ProductCard({ category }: { category: ProductCategory }) {
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-      </div>
+      </Reveal>
       <div className="flex flex-1 flex-col gap-2 p-6">
         <h3 className="text-xl font-bold text-foreground">{category.title}</h3>
         <p className="flex-1 text-sm leading-relaxed text-foreground/70">

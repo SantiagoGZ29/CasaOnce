@@ -55,3 +55,135 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== Animaciones elegantes y sutiles =====
+   Solo se activan si el usuario no prefiere reducir movimiento.
+   El estado "oculto" del reveal requiere JS (html.js), de lo contrario
+   el contenido siempre es visible (progressive enhancement). */
+@media (prefers-reduced-motion: no-preference) {
+  /* Entrada del hero (se ejecutan al cargar la página) */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes float-soft {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out both;
+  }
+
+  .animate-zoom-in {
+    animation: zoom-in 1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .animate-float-soft {
+    animation: float-soft 6s ease-in-out infinite;
+  }
+
+  .anim-delay-1 {
+    animation-delay: 100ms;
+  }
+  .anim-delay-2 {
+    animation-delay: 200ms;
+  }
+  .anim-delay-3 {
+    animation-delay: 300ms;
+  }
+  .anim-delay-4 {
+    animation-delay: 400ms;
+  }
+  .anim-delay-5 {
+    animation-delay: 500ms;
+  }
+
+  /* Reveal al hacer scroll (estado oculto solo con JS) */
+  html.js .reveal {
+    opacity: 0;
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+      clip-path 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  html.js .reveal-up {
+    transform: translateY(28px);
+  }
+
+  html.js .reveal-right {
+    transform: translateX(-28px);
+  }
+
+  html.js .reveal-left {
+    transform: translateX(28px);
+  }
+
+  html.js .reveal-scale {
+    transform: scale(0.96);
+  }
+
+  html.js .reveal-img {
+    transform: scale(1.06);
+    clip-path: inset(10% 8% 10% 8%);
+  }
+
+  html.js .reveal.is-inview {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0);
+  }
+
+  /* WhatsApp flotante: pulso suave para llamar la atención */
+  @keyframes soft-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45);
+    }
+    70%,
+    100% {
+      box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+    }
+  }
+
+  .animate-soft-pulse {
+    animation: soft-pulse 2.6s ease-out infinite;
+  }
+}

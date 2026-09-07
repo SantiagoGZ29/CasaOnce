@@ -30,7 +30,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Reservar por WhatsApp (${siteConfig.instagramHandle})`}
-      className={`${baseClasses} w-16 bg-[#25D366] hover:bg-[#1da851] hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366] sm:w-auto sm:px-6`}
+      className={`${baseClasses} w-16 animate-soft-pulse bg-[#25D366] hover:bg-[#1da851] hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366] sm:w-auto sm:px-6`}
     >
       <WhatsAppIcon aria-hidden="true" className="size-6 shrink-0" />
       <span className="hidden sm:inline">Reservar por WhatsApp</span>

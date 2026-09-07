@@ -1,3 +1,5 @@
+import { Reveal } from "@/app/components/common/reveal";
+
 interface SectionTitleProps {
   kicker?: string;
   title: string;
@@ -20,22 +22,24 @@ export function SectionTitle({
 
   return (
     <div className={`max-w-2xl ${alignClasses} ${className}`}>
-      {kicker ? (
-        <p className="font-script text-3xl leading-tight text-olive">
-          {kicker}
-        </p>
-      ) : null}
-      <h2
-        id={id}
-        className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl"
-      >
-        {title}
-      </h2>
-      {description ? (
-        <p className="mt-4 text-base leading-relaxed text-foreground/70 sm:text-lg">
-          {description}
-        </p>
-      ) : null}
+      <Reveal>
+        {kicker ? (
+          <p className="font-script text-3xl leading-tight text-olive">
+            {kicker}
+          </p>
+        ) : null}
+        <h2
+          id={id}
+          className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl"
+        >
+          {title}
+        </h2>
+        {description ? (
+          <p className="mt-4 text-base leading-relaxed text-foreground/70 sm:text-lg">
+            {description}
+          </p>
+        ) : null}
+      </Reveal>
     </div>
   );
 }

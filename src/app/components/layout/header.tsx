@@ -37,6 +37,8 @@ const navigation: NavigationItem[] = [
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState("");
 
     useEffect(() => {
         document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -46,14 +48,44 @@ export function Header() {
         };
     }, [isMenuOpen]);
 
+    useEffect(() => {
+        const sectionIds = navigation
+            .map((item) => item.href.replace("/#", ""))
+            .filter(Boolean);
+
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 8);
+
+            const probe = window.scrollY + 140;
+            let current = "";
+            for (const id of sectionIds) {
+                const el = document.getElementById(id);
+                if (el && el.offsetTop <= probe) current = id;
+            }
+            setActiveSection(current);
+        };
+
+        handleScroll();
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     function closeMenu() {
         setIsMenuOpen(false);
     }
 
     return (
-        <header className="sticky top-0 z-50 bg-olive text-white">
+        <header
+            className={`sticky top-0 z-50 bg-olive text-white transition-shadow duration-300 ${
+                scrolled ? "shadow-lg shadow-black/15" : ""
+            }`}
+        >
             <Container>
-                <div className="flex min-h-24 items-center justify-between gap-5">
+                <div
+                    className={`flex items-center justify-between gap-5 transition-[min-height] duration-300 ${
+                        scrolled ? "min-h-20" : "min-h-24"
+                    }`}
+                >
                     {/* Logo */}
                     <Link
                         href="/#inicio"
@@ -67,7 +99,11 @@ export function Header() {
                             width={428}
                             height={293}
                             priority
-                            className="h-14 w-auto object-contain transition duration-300 lg:h-16"
+                            className={`w-auto object-contain transition-[height] duration-300 ${
+                                scrolled
+                                    ? "h-12 lg:h-14"
+                                    : "h-14 lg:h-16"
+                            }`}
                         />
                     </Link>
 
@@ -76,17 +112,33 @@ export function Header() {
                         className="hidden items-center gap-6 xl:flex"
                         aria-label="Navegación principal"
                     >
-                        {navigation.map((item) => (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className="group relative py-5 font-serif font-semibold text-white transition-colors duration-300 hover:text-white"
-                            >
-                                {item.label}
+                        {navigation.map((item) => {
+                            const isActive =
+                                activeSection ===
+                                item.href.replace("/#", "");
 
-                                <span className="absolute bottom-0 left-0 h-[3px] w-0 bg-white transition-all duration-300 group-hover:w-full" />
-                            </Link>
-                        ))}
+                            return (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    aria-current={
+                                        isActive ? "true" : undefined
+                                    }
+                                    className="group relative py-5 font-serif font-semibold text-white transition-colors duration-300 hover:text-white"
+                                >
+                                    {item.label}
+
+                                    <span
+                                        className={[
+                                            "absolute bottom-0 left-0 h-[3px] bg-white transition-all duration-300",
+                                            isActive
+                                                ? "w-full"
+                                                : "w-0 group-hover:w-full",
+                                        ].join(" ")}
+                                    />
+                                </Link>
+                            );
+                        })}
                     </nav>
 
                     {/* CTA desktop */}

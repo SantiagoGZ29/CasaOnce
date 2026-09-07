@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Container } from "@/app/components/layout/ui/container";
 import { SectionTitle } from "@/app/components/common/section-title";
 import { CTAButton } from "@/app/components/common/cta-button";
+import { Reveal } from "@/app/components/common/reveal";
 import { InstagramIcon } from "@/app/components/common/icons";
 import { galleryImages } from "@/app/data/gallery";
 import { siteConfig } from "@/app/data/site";
@@ -23,28 +24,34 @@ export function InstagramSection() {
           />
 
           <ul className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
-            {galleryImages.map((image) => (
+            {galleryImages.map((image, index) => (
               <li key={image.id} className="group">
-                <a
-                  href={siteConfig.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Abrir Instagram de Casa Once"
-                  className="relative block aspect-square w-full overflow-hidden rounded-2xl"
+                <Reveal
+                  variant="up"
+                  delay={Math.min((index % 6) * 70, 350)}
+                  className="h-full"
                 >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    sizes="(min-width: 1024px) 15vw, (min-width: 640px) 30vw, 48vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </a>
+                  <a
+                    href={siteConfig.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Abrir Instagram de Casa Once"
+                    className="relative block aspect-square w-full overflow-hidden rounded-2xl"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 15vw, (min-width: 640px) 30vw, 48vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </a>
+                </Reveal>
               </li>
             ))}
           </ul>
 
-          <div className="mt-10 text-center">
+          <Reveal variant="up" delay={80} className="mt-10 text-center">
             <CTAButton
               href={siteConfig.instagramUrl}
               external
@@ -54,7 +61,7 @@ export function InstagramSection() {
             >
               Seguirnos en Instagram
             </CTAButton>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

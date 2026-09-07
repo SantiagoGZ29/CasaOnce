@@ -1,5 +1,6 @@
 import { Container } from "@/app/components/layout/ui/container";
 import { CTAButton } from "@/app/components/common/cta-button";
+import { Reveal } from "@/app/components/common/reveal";
 import { WhatsAppCTA } from "@/app/components/common/whatsapp-cta";
 import { InstagramIcon } from "@/app/components/common/icons";
 import { MapPin, Clock } from "lucide-react";
@@ -20,7 +21,8 @@ export function Contact() {
             ¿Nos vemos en Casa Once?
           </h2>
 
-          <div className="mt-10 rounded-3xl border border-black/10 bg-cream p-8 sm:p-10">
+          <Reveal variant="up" delay={80} className="mt-10">
+            <div className="rounded-3xl border border-black/10 bg-cream p-8 sm:p-10">
             <ul className="space-y-5">
               <li className="flex items-center justify-center gap-3">
                 <MapPin aria-hidden="true" className="size-5 shrink-0 text-olive" />
@@ -66,6 +68,7 @@ export function Contact() {
               </p>
             ) : null}
           </div>
+          </Reveal>
         </div>
       </Container>
     </section>

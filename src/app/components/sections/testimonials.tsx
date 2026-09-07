@@ -1,6 +1,7 @@
 import { Container } from "@/app/components/layout/ui/container";
 import { SectionTitle } from "@/app/components/common/section-title";
 import { CTAButton } from "@/app/components/common/cta-button";
+import { Reveal } from "@/app/components/common/reveal";
 import { testimonials } from "@/app/data/testimonials";
 import { siteConfig } from "@/app/data/site";
 import { TestimonialCard } from "@/app/components/testimonials/testimonial-card";
@@ -25,7 +26,7 @@ export function Testimonials() {
             id="testimonios-title"
           />
 
-          <div className="mt-8 flex justify-center">
+          <Reveal variant="up" className="mt-8 flex justify-center">
             <a
               href={reviewsUrl}
               target="_blank"
@@ -44,16 +45,21 @@ export function Testimonials() {
                 Ver opiniones de Casa Once en Google
               </span>
             </a>
-          </div>
+          </Reveal>
 
-          <ReviewCarousel
-            className="mt-10"
-            slides={testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} testimonial={testimonial} />
-            ))}
-          />
+          <Reveal variant="up" delay={120} className="mt-10">
+            <ReviewCarousel
+              slides={testimonials.map((testimonial, index) => (
+                <TestimonialCard key={index} testimonial={testimonial} />
+              ))}
+            />
+          </Reveal>
 
-          <div className="mt-12 flex flex-col items-center gap-4 text-center">
+          <Reveal
+            variant="up"
+            delay={80}
+            className="mt-12 flex flex-col items-center gap-4 text-center"
+          >
             <p className="text-sm text-foreground/60">
               ¿Nos visitaste? Ayúdanos a seguir creciendo con tu opinión.
             </p>
@@ -66,7 +72,7 @@ export function Testimonials() {
               <GoogleIcon aria-hidden="true" className="size-4" />
               Deja tu reseña en Google
             </CTAButton>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

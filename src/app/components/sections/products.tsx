@@ -13,7 +13,7 @@ export function Products() {
           <SectionTitle
             kicker="Nuestra carta"
             title="Descubre nuestra carta"
-            description="Las categorías que preparamos para ti, con ese sabor casero que nos caracteriza."
+            description="Lo que preparamos para ti, con ese sabor casero que nos caracteriza."
             id="productos-title"
           />
 

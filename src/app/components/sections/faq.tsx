@@ -1,5 +1,6 @@
 import { Container } from "@/app/components/layout/ui/container";
 import { SectionTitle } from "@/app/components/common/section-title";
+import { Reveal } from "@/app/components/common/reveal";
 import { FAQItem } from "@/app/components/faq/faq-item";
 import { faqItems } from "@/app/data/faq";
 
@@ -19,8 +20,14 @@ export function FAQ() {
           />
 
           <div className="mt-12 flex flex-col gap-4">
-            {faqItems.map((item) => (
-              <FAQItem key={item.question} item={item} />
+            {faqItems.map((item, index) => (
+              <Reveal
+                key={item.question}
+                variant="up"
+                delay={Math.min(index * 60, 300)}
+              >
+                <FAQItem item={item} />
+              </Reveal>
             ))}
           </div>
         </div>

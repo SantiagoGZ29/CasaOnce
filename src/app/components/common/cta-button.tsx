@@ -34,7 +34,7 @@ function ctaClasses(
   size: CTAButtonSize,
   className: string
 ) {
-  return `inline-flex items-center justify-center gap-2 rounded-full font-sans font-bold uppercase tracking-wide transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  return `group inline-flex items-center justify-center gap-2 rounded-full font-sans font-bold uppercase tracking-wide transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 }
 
 export function CTAButton({
@@ -50,7 +50,12 @@ export function CTAButton({
   const content = (
     <>
       {children}
-      {icon ?? <ArrowRight aria-hidden="true" className="size-4 shrink-0" />}
+      {icon ?? (
+        <ArrowRight
+          aria-hidden="true"
+          className="size-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+        />
+      )}
     </>
   );
 

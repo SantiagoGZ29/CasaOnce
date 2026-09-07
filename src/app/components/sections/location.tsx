@@ -1,5 +1,6 @@
 import { Container } from "@/app/components/layout/ui/container";
 import { CTAButton } from "@/app/components/common/cta-button";
+import { Reveal } from "@/app/components/common/reveal";
 import { ReelEmbed } from "@/app/components/instagram/reel-embed";
 import { MapPin, Clock } from "lucide-react";
 import { siteConfig } from "@/app/data/site";
@@ -13,7 +14,8 @@ export function Location() {
     >
       <Container>
         <div className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16">
-          <div className="text-center lg:text-left">
+          <Reveal variant="right">
+            <div className="text-center lg:text-left">
             <p className="font-script text-4xl leading-tight text-olive">
               Te esperamos
             </p>
@@ -47,7 +49,7 @@ export function Location() {
 
             <p className="mt-6 text-sm leading-relaxed text-foreground/60">
               Estamos en el corazón de Puerto Montt. Si vienes por primera vez,
-              este reel te muestra el camino.
+              este reel te muestra el camino desde la plaza.
             </p>
 
             <div className="mt-8">
@@ -62,8 +64,11 @@ export function Location() {
               </CTAButton>
             </div>
           </div>
+          </Reveal>
 
-          <ReelEmbed />
+          <Reveal variant="left" delay={150}>
+            <ReelEmbed />
+          </Reveal>
         </div>
       </Container>
     </section>

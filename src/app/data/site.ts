@@ -39,13 +39,13 @@ export const siteConfig: SiteConfig = {
     "https://www.instagram.com/reel/DQrgXgokbSU/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==",
   googleMapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Benavente+350+Puerto+Montt",
-  whatsappNumber: "",
+  whatsappNumber: "+56993384750",
   whatsappMessage: "Hola, Casa Once. Quisiera consultar por una reserva.",
-  heroImage: "/images/placeholders/fachada.svg",
+  heroImage: "/images/fachada.webp",
   heroImageAlt:
     "Fotografía de la fachada de Casa Once, en Benavente 350, Puerto Montt",
   reviewsRating: 4.4,
-  reviewsCount: 449,
+  reviewsCount: 49,
   reviewsUrl:
     "https://www.google.com/maps/search/?api=1&query=Casa+Once+O%27Higgins+233+Puerto+Montt",
 };
